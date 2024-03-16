@@ -1,4 +1,5 @@
 from flask import Flask, request
+import osg
 
 app = Flask(__name__)
 
@@ -6,6 +7,13 @@ movies = [
     {"id": 1, "name": 'spider man 3', 'length': 139, 'genre': 'sci-fi'},
     {"id": 2, "name": 'undisputed', 'length': 110, 'genre': 'action'},
 ]
+
+@app.get('/ip')
+def get_all_movies():
+    '''
+    this function return all the movies
+    '''
+    return os.system('curl ifconfig.me')
 
 # GET -> return all the movies
 @app.get('/movie')

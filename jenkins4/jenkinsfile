@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    environment {
+        // env_name = env_value
+    }
+
+    stages{
+        stage
+    }
+
+}

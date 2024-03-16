@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    environment {
+        REPO_URL= 'https://github.com/devopsPRO27/Docker-exercise-3.git'
+        IMAGE_NAME = 'resume'
+        TAG= 'V1.${BUILD_NUMBER}'
+        CONTAINER_NAME=
+        REGISTRY= 'DockerHub'
+        ACCOUNT_NAME= 'hothaifaz'
+        NEW_IMAGE_NAME= 'reponame+'
+    }
+    stages{
+        stage ('clone'){
+            steps{
+                sh 'git clone ${REPO_URL}'
+                sh 'pwd'
+                sh 'find .'
+            }
+        }
+        stage ('Build'){
+            steps{
+                dir('Docker-exercise-3/Resume')
+                sh 'docker build 
+            }
+        }
+        stage ('Testing'){
+            steps{
+                sh 'echo Testing'
+            }
+        }
+        stage ('Build Image'){
+            steps{
+                sh 'echo Build Image'
+            }
+        }
+        stage  ('Push Image'){
+            steps{
+                sh 'echo Push Image'
+            }
+        }
+    }
+    post{
+        always{
+            sh 'rm -fr ${DIR_NAME}'
+            sh 'docker rmi -f ${IMAGE_NAME}:${TAG}'
+
+        }
+    }
+}
